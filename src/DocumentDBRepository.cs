@@ -20,7 +20,8 @@
         {
             try
             {
-                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), 
+                            new RequestOptions { PartitionKey = new PartitionKey("customerId") });
                 return (T)(dynamic)document;
             }
             catch (DocumentClientException e)
@@ -47,7 +48,8 @@
             List<T> results = new List<T>();
             while (query.HasMoreResults)
             {
-                results.AddRange(await query.ExecuteNextAsync<T>());
+                var result = await query.ExecuteNextAsync<T>();
+                results.AddRange(result);
             }
 
             return results;

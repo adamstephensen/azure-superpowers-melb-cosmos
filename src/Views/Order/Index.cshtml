@@ -1,22 +1,19 @@
-﻿@model IEnumerable<todo.Models.Item>
+﻿@model IEnumerable<todo.Models.Order>
 
 @{
-    ViewBag.Title = "List of To-Do Items";
+    ViewBag.Title = "List of Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List of To-Do Items</h2>
+<h2>List of Orders</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.OrderNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Completed)
+            @Html.DisplayNameFor(model => model.TotalPrice)
         </th>
         <th></th>
     </tr>
@@ -24,13 +21,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.OrderNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Completed)
+            @Html.DisplayFor(modelItem => item.TotalPrice)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -10,7 +10,7 @@
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
-            var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
+            var items = await DocumentDBRepository<Order>.GetItemsAsync(d => !d.Deleted);
             return View(items);
         }
 
